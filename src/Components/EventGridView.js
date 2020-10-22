@@ -130,8 +130,14 @@ const EventGridView = (props) => {
                               />
                            )}
                         </View>
-                        <View>
-                           <Text>{item.event}</Text>
+                        <View
+                           style={{
+                              width: '100%',
+                              height: '20%',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                           }}>
+                           <Text style={{fontSize: 14}}>{item.event}</Text>
                         </View>
                      </View>
                   </View>
