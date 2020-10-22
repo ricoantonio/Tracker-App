@@ -38,7 +38,7 @@ const EventGridView = (props) => {
             keyExtractor={(item, index) => {
                return index.toString();
             }}
-            style={{marginBottom: 220}}
+            style={{marginBottom: 150}}
             renderItem={({item, index}) => {
                if (item.empty === true) {
                   return <View style={[styles.item, styles.itemInvisible]} />;
