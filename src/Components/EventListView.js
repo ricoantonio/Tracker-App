@@ -79,7 +79,7 @@ const EventGridView = (props) => {
                                     style={{
                                        height: 100,
                                        width: 100,
-                                       backgroundColor: 'gray',
+                                       backgroundColor: 'white',
                                        borderRadius: 50,
                                        alignSelf: 'center',
                                        justifyContent: 'center',
@@ -88,7 +88,7 @@ const EventGridView = (props) => {
                                        style={{
                                           position: 'absolute',
                                           fontSize: 50,
-                                          color: 'white',
+                                          color: '#2196F3',
                                           alignSelf: 'center',
                                        }}>
                                        {sortTrack.indexOf(item) + 1}

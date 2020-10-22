@@ -88,7 +88,4 @@ const Detail = ({navigation: {navigate}, route}) => {
    );
 };
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 export default Detail;

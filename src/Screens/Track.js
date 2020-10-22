@@ -41,6 +41,14 @@ const Track = ({navigation: {navigate}}, props, route) => {
                {sortToggle ? (
                   <View style={{flexDirection: 'row'}}>
                      <TouchableOpacity
+                        style={{
+                           height: 70,
+                           justifyContent: 'center',
+                           paddingRight: 10,
+
+                           right: -20,
+                        }}
+                        activeOpacity={0.7}
                         onPress={
                            tracked.length === sort.length
                               ? () => dispatch({type: 'SORT_TRACK'})
@@ -50,21 +58,29 @@ const Track = ({navigation: {navigate}}, props, route) => {
                            style={[
                               {
                                  fontSize: 20,
-                                 borderWidth: 1,
                                  height: 50,
                                  width: 100,
                                  borderRadius: 50,
                                  textAlign: 'center',
                                  textAlignVertical: 'center',
+                                 backgroundColor: 'white',
+                                 marginLeft: 5,
                               },
+                              styles.itemShadow,
                               tracked.length === sort.length
-                                 ? {color: 'black', borderColor: 'black'}
+                                 ? {color: '#2196F3', borderColor: 'black'}
                                  : {color: 'gray', borderColor: 'gray'},
                            ]}>
                            Done
                         </Text>
                      </TouchableOpacity>
                      <TouchableOpacity
+                        style={{
+                           height: 70,
+                           justifyContent: 'center',
+                           paddingRight: 10,
+                           right: -10,
+                        }}
                         onPress={() => dispatch({type: 'SORT_TOGGLE'})}>
                         <Text
                            style={[
@@ -86,6 +102,13 @@ const Track = ({navigation: {navigate}}, props, route) => {
                   </View>
                ) : (
                   <TouchableOpacity
+                     style={{
+                        height: 70,
+                        justifyContent: 'center',
+                        paddingRight: 10,
+                        right: -10,
+                     }}
+                     activeOpacity={0.7}
                      onPress={
                         tracked.length < 2
                            ? null
@@ -95,16 +118,18 @@ const Track = ({navigation: {navigate}}, props, route) => {
                         style={[
                            {
                               fontSize: 20,
-                              borderWidth: 1,
                               height: 50,
                               width: 100,
                               borderRadius: 50,
                               textAlign: 'center',
                               textAlignVertical: 'center',
+                              backgroundColor: 'white',
+                              marginLeft: 5,
                            },
+                           styles.itemShadow,
                            tracked.length < 2
-                              ? {color: 'gray', borderColor: 'gray'}
-                              : {color: 'black', borderColor: 'black'},
+                              ? {color: 'gray'}
+                              : {color: '#2196F3'},
                         ]}>
                         Sort
                      </Text>
@@ -132,5 +157,16 @@ const Track = ({navigation: {navigate}}, props, route) => {
       </View>
    );
 };
+const styles = StyleSheet.create({
+   itemShadow: {
+      borderColor: '#ddd',
+      borderBottomWidth: 0,
+      shadowColor: '#000',
+      shadowOffset: {width: 0, height: 2},
+      shadowOpacity: 0.5,
+      shadowRadius: 8,
+      elevation: 4,
+   },
+});
 
 export default Track;

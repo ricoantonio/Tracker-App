@@ -29,19 +29,29 @@ const Home = ({navigation: {navigate}}) => {
                   alignItems: 'flex-end',
                }}>
                <TouchableOpacity
+                  style={{
+                     height: 70,
+                     justifyContent: 'center',
+                     paddingRight: 10,
+                     right: -10,
+                  }}
+                  activeOpacity={0.7}
                   onPress={() => dispatch({type: 'TOGGLE_VIEW'})}>
                   <Text
-                     style={{
-                        fontSize: 20,
-                        // backgroundColor: 'red',
-                        borderColor: 'black',
-                        borderWidth: 1,
-                        height: 50,
-                        width: 100,
-                        borderRadius: 50,
-                        textAlign: 'center',
-                        textAlignVertical: 'center',
-                     }}>
+                     style={[
+                        {
+                           fontSize: 20,
+                           height: 50,
+                           width: 100,
+                           borderRadius: 50,
+                           textAlign: 'center',
+                           textAlignVertical: 'center',
+                           color: '#2196F3',
+                           backgroundColor: 'white',
+                           marginLeft: 5,
+                        },
+                        styles.itemShadow,
+                     ]}>
                      {eventViewList ? 'List ' : 'Grid'}
                   </Text>
                </TouchableOpacity>
@@ -56,6 +66,16 @@ const Home = ({navigation: {navigate}}) => {
    );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+   itemShadow: {
+      borderColor: '#ddd',
+      borderBottomWidth: 0,
+      shadowColor: '#000',
+      shadowOffset: {width: 0, height: 2},
+      shadowOpacity: 0.5,
+      shadowRadius: 8,
+      elevation: 5,
+   },
+});
 
 export default Home;
