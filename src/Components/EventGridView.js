@@ -6,6 +6,9 @@ import {Stores} from '../Store';
 const EventGridView = (props) => {
    const {state, dispatch, actions} = useContext(Stores);
 
+   const sortTrack = state.trackReducer.sort;
+   const sortToggle = state.trackReducer.sortToggle;
+
    const eventList = props.eventList;
    const navigate = props.navigate;
 
@@ -43,23 +46,89 @@ const EventGridView = (props) => {
                return (
                   <View
                      style={{flex: 1}}
-                     onTouchEnd={() =>
-                        navigate('Detail', {
-                           item,
-                        })
+                     onTouchEnd={
+                        sortToggle && props.track
+                           ? sortTrack.includes(item)
+                              ? () => actions.removeSort(item)
+                              : () => actions.addSort(item)
+                           : () =>
+                                navigate('Detail', {
+                                   item,
+                                })
                      }>
                      <View style={[styles.item, styles.itemShadow]}>
                         <View style={{height: '80%', width: '100%'}}>
-                           <Image
-                              style={{
-                                 resizeMode: 'cover',
-                                 height: '100%',
-                                 width: '100%',
-                                 borderTopLeftRadius: 20,
-                                 borderTopRightRadius: 20,
-                              }}
-                              source={item.thumbnail}
-                           />
+                           {sortToggle && props.track ? (
+                              <>
+                                 <Image
+                                    style={[
+                                       {
+                                          resizeMode: 'cover',
+                                          height: '100%',
+                                          width: '100%',
+                                          borderTopLeftRadius: 20,
+                                          borderTopRightRadius: 20,
+                                       },
+                                    ]}
+                                    source={item.thumbnail}
+                                 />
+                                 <Image
+                                    style={[
+                                       {
+                                          resizeMode: 'cover',
+                                          height: '100%',
+                                          width: '100%',
+                                          borderTopLeftRadius: 20,
+                                          borderTopRightRadius: 20,
+                                          tintColor: 'gray',
+                                          opacity: 0.4,
+                                          position: 'absolute',
+                                       },
+                                    ]}
+                                    source={item.thumbnail}
+                                 />
+                                 {sortTrack.includes(item) ? (
+                                    <View
+                                       style={{
+                                          position: 'absolute',
+                                          width: '100%',
+                                          height: '100%',
+                                          justifyContent: 'center',
+                                       }}>
+                                       <View
+                                          style={{
+                                             height: 100,
+                                             width: 100,
+                                             backgroundColor: 'gray',
+                                             borderRadius: 50,
+                                             alignSelf: 'center',
+                                             justifyContent: 'center',
+                                          }}>
+                                          <Text
+                                             style={{
+                                                position: 'absolute',
+                                                fontSize: 50,
+                                                color: 'white',
+                                                alignSelf: 'center',
+                                             }}>
+                                             {sortTrack.indexOf(item) + 1}
+                                          </Text>
+                                       </View>
+                                    </View>
+                                 ) : null}
+                              </>
+                           ) : (
+                              <Image
+                                 style={{
+                                    resizeMode: 'cover',
+                                    height: '100%',
+                                    width: '100%',
+                                    borderTopLeftRadius: 20,
+                                    borderTopRightRadius: 20,
+                                 }}
+                                 source={item.thumbnail}
+                              />
+                           )}
                         </View>
                         <View>
                            <Text>{item.event}</Text>
