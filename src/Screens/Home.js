@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useContext} from 'react';
-import {View, Text, Button, Dimensions, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {Stores} from '../Store';
 import EventGridView from '../Components/EventGridView';
 import EventListView from '../Components/EventListView';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import Button from '../Components/Button';
 
 const Home = ({navigation: {navigate}}) => {
    const {state, dispatch, actions} = useContext(Stores);
@@ -28,33 +28,11 @@ const Home = ({navigation: {navigate}}) => {
                   width: '50%',
                   alignItems: 'flex-end',
                }}>
-               <TouchableOpacity
-                  style={{
-                     height: 70,
-                     justifyContent: 'center',
-                     paddingRight: 10,
-                     right: -10,
-                  }}
-                  activeOpacity={0.7}
-                  onPress={() => dispatch({type: 'TOGGLE_VIEW'})}>
-                  <Text
-                     style={[
-                        {
-                           fontSize: 20,
-                           height: 50,
-                           width: 100,
-                           borderRadius: 50,
-                           textAlign: 'center',
-                           textAlignVertical: 'center',
-                           color: '#2196F3',
-                           backgroundColor: 'white',
-                           marginLeft: 5,
-                        },
-                        styles.itemShadow,
-                     ]}>
-                     {eventViewList ? 'List ' : 'Grid'}
-                  </Text>
-               </TouchableOpacity>
+               <Button
+                  containerStyle={{paddingRight: 10, right: -10}}
+                  title={eventViewList ? 'List ' : 'Grid'}
+                  onPress={() => dispatch({type: 'TOGGLE_VIEW'})}
+               />
             </View>
          </View>
          {eventViewList ? (

@@ -1,13 +1,6 @@
 import React, {useState, useContext} from 'react';
-import {
-   View,
-   Text,
-   Button,
-   TextInput,
-   StyleSheet,
-   Dimensions,
-} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
+import Button from '../Components/Button';
 import {Stores} from '../Store';
 
 const UserInput = ({navigation: {navigate}}) => {
@@ -35,39 +28,10 @@ const UserInput = ({navigation: {navigate}}) => {
             style={[styles.textInput, styles.itemShadow]}
             placeholder={'Username'}
          />
-         <TouchableOpacity
-            style={{
-               height: 80,
-               justifyContent: 'center',
-               alignItems: 'center',
-            }}
-            activeOpacity={0.7}
-            onPress={() => actions.newUser(nameInput)}>
-            <Text
-               style={[
-                  {
-                     fontSize: 20,
-                     height: 50,
-                     width: 100,
-                     borderRadius: 50,
-                     textAlign: 'center',
-                     textAlignVertical: 'center',
-                     color: '#2196F3',
-                     backgroundColor: 'white',
-                     marginLeft: 5,
-                  },
-                  styles.itemShadow,
-               ]}>
-               Next
-            </Text>
-         </TouchableOpacity>
-         {/* <Button onPress={() => actions.newUser(nameInput)} title={'Next'} /> */}
+         <Button title={'Next'} onPress={() => actions.newUser(nameInput)} />
       </View>
    );
 };
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
    textInput: {

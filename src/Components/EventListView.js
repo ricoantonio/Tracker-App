@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Dimensions, StyleSheet, Image} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {Stores} from '../Store';

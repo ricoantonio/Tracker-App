@@ -1,9 +1,9 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
-import {View, Text, Button, TextInput, StyleSheet} from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {Stores} from '../Store';
 import EventListView from '../Components/EventListView';
 import EventGridView from '../Components/EventGridView';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import Button from '../Components/Button';
 
 const Track = ({navigation: {navigate}}, props, route) => {
    const {state, dispatch, actions} = useContext(Stores);
@@ -40,100 +40,56 @@ const Track = ({navigation: {navigate}}, props, route) => {
                }}>
                {sortToggle ? (
                   <View style={{flexDirection: 'row'}}>
-                     <TouchableOpacity
-                        style={{
-                           height: 70,
-                           justifyContent: 'center',
-                           paddingRight: 10,
-
-                           right: -20,
-                        }}
-                        activeOpacity={0.7}
+                     <Button
+                        title={'Done'}
+                        buttonStyle={
+                           tracked.length === sort.length
+                              ? {color: '#2196F3', borderColor: 'black'}
+                              : {color: 'gray', borderColor: 'gray'}
+                        }
                         onPress={
                            tracked.length === sort.length
                               ? () => dispatch({type: 'SORT_TRACK'})
                               : null
-                        }>
-                        <Text
-                           style={[
-                              {
-                                 fontSize: 20,
-                                 height: 50,
-                                 width: 100,
-                                 borderRadius: 50,
-                                 textAlign: 'center',
-                                 textAlignVertical: 'center',
-                                 backgroundColor: 'white',
-                                 marginLeft: 5,
-                              },
-                              styles.itemShadow,
-                              tracked.length === sort.length
-                                 ? {color: '#2196F3', borderColor: 'black'}
-                                 : {color: 'gray', borderColor: 'gray'},
-                           ]}>
-                           Done
-                        </Text>
-                     </TouchableOpacity>
-                     <TouchableOpacity
-                        style={{
-                           height: 70,
-                           justifyContent: 'center',
+                        }
+                        containerStyle={{
+                           paddingRight: 10,
+                           right: -20,
+                        }}
+                     />
+                     <Button
+                        title={'X'}
+                        buttonStyle={{
+                           height: 50,
+                           width: 50,
+                           color: 'white',
+                           backgroundColor: 'red',
+                        }}
+                        onPress={() => dispatch({type: 'SORT_TOGGLE'})}
+                        containerStyle={{
                            paddingRight: 10,
                            right: -10,
                         }}
-                        onPress={() => dispatch({type: 'SORT_TOGGLE'})}>
-                        <Text
-                           style={[
-                              {
-                                 fontSize: 20,
-                                 height: 50,
-                                 width: 50,
-                                 borderRadius: 50,
-                                 textAlign: 'center',
-                                 textAlignVertical: 'center',
-                                 color: 'white',
-                                 backgroundColor: 'red',
-                                 marginLeft: 5,
-                              },
-                           ]}>
-                           X
-                        </Text>
-                     </TouchableOpacity>
+                     />
                   </View>
                ) : (
-                  <TouchableOpacity
-                     style={{
-                        height: 70,
-                        justifyContent: 'center',
-                        paddingRight: 10,
-                        right: -10,
-                     }}
-                     activeOpacity={0.7}
+                  <Button
+                     title={'Sort'}
+                     buttonStyle={
+                        tracked.length < 2
+                           ? {color: 'gray'}
+                           : {color: '#2196F3'}
+                     }
                      onPress={
                         tracked.length < 2
                            ? null
                            : () => dispatch({type: 'SORT_TOGGLE'})
-                     }>
-                     <Text
-                        style={[
-                           {
-                              fontSize: 20,
-                              height: 50,
-                              width: 100,
-                              borderRadius: 50,
-                              textAlign: 'center',
-                              textAlignVertical: 'center',
-                              backgroundColor: 'white',
-                              marginLeft: 5,
-                           },
-                           styles.itemShadow,
-                           tracked.length < 2
-                              ? {color: 'gray'}
-                              : {color: '#2196F3'},
-                        ]}>
-                        Sort
-                     </Text>
-                  </TouchableOpacity>
+                     }
+                     containerStyle={{
+                        paddingRight: 10,
+                        right: -10,
+                     }}
+                  />
                )}
             </View>
          </View>

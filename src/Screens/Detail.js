@@ -1,13 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {
-   View,
-   Text,
-   Button,
-   TextInput,
-   StyleSheet,
-   Dimensions,
-   Image,
-} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Stores} from '../Store';
 
