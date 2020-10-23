@@ -9,7 +9,7 @@ const Tab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 
 const HomeNav = () => {
-   const {state, dispatch, actions} = useContext(Stores);
+   const {actions} = useContext(Stores);
 
    useEffect(() => {
       getData();
@@ -26,6 +26,7 @@ const HomeNav = () => {
          console.log(e);
       }
    };
+
    function HomeStackScreen() {
       return (
          <HomeStack.Navigator headerMode="none">

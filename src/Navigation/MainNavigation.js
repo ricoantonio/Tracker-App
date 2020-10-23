@@ -5,7 +5,7 @@ import HomeNav from './HomeNav';
 import {Stores} from '../Store';
 
 const MainNavigation = () => {
-   const {state, dispatch} = useContext(Stores);
+   const {state} = useContext(Stores);
    const user = state.userReducer.user;
 
    return (

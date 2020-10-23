@@ -4,7 +4,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {Stores} from '../Store';
 
 const EventGridView = (props) => {
-   const {state, dispatch, actions} = useContext(Stores);
+   const {state, actions} = useContext(Stores);
 
    const sortTrack = state.trackReducer.sort;
    const sortToggle = state.trackReducer.sortToggle;
@@ -20,7 +20,7 @@ const EventGridView = (props) => {
             return index.toString();
          }}
          style={{marginBottom: 80}}
-         renderItem={({item, index}) => {
+         renderItem={({item}) => {
             if (item.empty === true) {
                return <View style={[styles.item, styles.itemInvisible]} />;
             }
@@ -80,7 +80,6 @@ const EventGridView = (props) => {
    );
 };
 
-const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({

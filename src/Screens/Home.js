@@ -6,7 +6,7 @@ import EventListView from '../Components/EventListView';
 import Button from '../Components/Button';
 
 const Home = ({navigation: {navigate}}) => {
-   const {state, dispatch, actions} = useContext(Stores);
+   const {state, dispatch} = useContext(Stores);
    const user = state.userReducer.user;
    const eventViewList = state.eventViewReducer.eventViewList;
    const eventList = state.events;

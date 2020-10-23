@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Stores} from '../Store';
 
-const Detail = ({navigation: {navigate}, route}) => {
-   const {state, dispatch, actions} = useContext(Stores);
+const Detail = ({route}) => {
+   const {state, actions} = useContext(Stores);
    const item = route.params.item;
    const tracked = state.trackReducer.track;
 

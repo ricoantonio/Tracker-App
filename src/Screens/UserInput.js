@@ -1,11 +1,10 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import Button from '../Components/Button';
 import {Stores} from '../Store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const UserInput = ({navigation: {navigate}}) => {
-   const {state, dispatch, actions} = useContext(Stores);
+const UserInput = () => {
+   const {actions} = useContext(Stores);
    const [nameInput, setNameInput] = useState('');
 
    return (

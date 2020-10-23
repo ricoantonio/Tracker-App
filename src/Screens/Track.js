@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Stores} from '../Store';
 import EventListView from '../Components/EventListView';
@@ -6,7 +6,7 @@ import EventGridView from '../Components/EventGridView';
 import Button from '../Components/Button';
 
 const Track = ({navigation: {navigate}}) => {
-   const {state, dispatch, actions} = useContext(Stores);
+   const {state, dispatch} = useContext(Stores);
    const tracked = state.trackReducer.track;
    const sortToggle = state.trackReducer.sortToggle;
    const sort = state.trackReducer.sort;
