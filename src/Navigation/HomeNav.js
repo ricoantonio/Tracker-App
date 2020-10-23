@@ -10,7 +10,6 @@ const HomeStack = createStackNavigator();
 
 const HomeNav = () => {
    const {state, dispatch, actions} = useContext(Stores);
-   const eventlist = state.events;
 
    useEffect(() => {
       getData();

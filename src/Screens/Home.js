@@ -10,7 +10,6 @@ const Home = ({navigation: {navigate}}) => {
    const user = state.userReducer.user;
    const eventViewList = state.eventViewReducer.eventViewList;
    const eventList = state.events;
-   const tracked = state.trackReducer.track;
    return (
       <View>
          <View style={[styles.containerStyle]}>

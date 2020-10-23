@@ -8,7 +8,6 @@ const EventGridView = (props) => {
 
    const sortTrack = state.trackReducer.sort;
    const sortToggle = state.trackReducer.sortToggle;
-   const tracked = state.trackReducer.track;
 
    const eventList = props.eventList;
    const navigate = props.navigate;

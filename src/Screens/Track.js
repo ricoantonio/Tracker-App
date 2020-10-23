@@ -4,7 +4,6 @@ import {Stores} from '../Store';
 import EventListView from '../Components/EventListView';
 import EventGridView from '../Components/EventGridView';
 import Button from '../Components/Button';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Track = ({navigation: {navigate}}) => {
    const {state, dispatch, actions} = useContext(Stores);

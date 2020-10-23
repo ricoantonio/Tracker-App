@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Stores} from '../Store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Detail = ({navigation: {navigate}, route}) => {
    const {state, dispatch, actions} = useContext(Stores);

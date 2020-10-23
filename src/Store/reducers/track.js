@@ -17,7 +17,6 @@ const setData = async (x) => {
 
 const trackReducer = (state, action) => {
    const track = state.track;
-   const stringTrack = JSON.stringify(state.track);
    const sort = state.sort;
    const sortToggle = state.sortToggle;
 
