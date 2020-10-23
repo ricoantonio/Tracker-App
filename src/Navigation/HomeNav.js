@@ -1,12 +1,32 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home, Track, Detail} from '../Screens';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Stores} from '../Store';
 
 const Tab = createMaterialTopTabNavigator();
 const HomeStack = createStackNavigator();
 
 const HomeNav = () => {
+   const {state, dispatch, actions} = useContext(Stores);
+   const eventlist = state.events;
+
+   useEffect(() => {
+      getData();
+   }, []);
+
+   const getData = async () => {
+      try {
+         const track = await AsyncStorage.getItem('track');
+         const res = JSON.parse(track);
+         if (track != null) {
+            return actions.setTrack(res);
+         }
+      } catch (e) {
+         console.log(e);
+      }
+   };
    function HomeStackScreen() {
       return (
          <HomeStack.Navigator headerMode="none">

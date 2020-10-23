@@ -1,11 +1,26 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import Button from '../Components/Button';
 import {Stores} from '../Store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UserInput = ({navigation: {navigate}}) => {
    const {state, dispatch, actions} = useContext(Stores);
    const [nameInput, setNameInput] = useState('');
+
+   useEffect(() => {
+      getData();
+   });
+
+   const getData = async () => {
+      try {
+         const track = await AsyncStorage.getItem('track');
+         const username = await AsyncStorage.getItem('username');
+      } catch (e) {
+         console.log(e);
+      }
+   };
+
    return (
       <View
          style={{

@@ -8,6 +8,7 @@ const EventGridView = (props) => {
 
    const sortTrack = state.trackReducer.sort;
    const sortToggle = state.trackReducer.sortToggle;
+   const tracked = state.trackReducer.track;
 
    const eventList = props.eventList;
    const navigate = props.navigate;
@@ -57,60 +58,22 @@ const EventGridView = (props) => {
                                 })
                      }>
                      <View style={[styles.item, styles.itemShadow]}>
-                        <View style={{height: '80%', width: '100%'}}>
+                        <View style={[styles.imgContainer]}>
                            {sortToggle && props.track ? (
                               <>
                                  <Image
-                                    style={[
-                                       {
-                                          resizeMode: 'cover',
-                                          height: '100%',
-                                          width: '100%',
-                                          borderTopLeftRadius: 20,
-                                          borderTopRightRadius: 20,
-                                       },
-                                    ]}
+                                    style={[styles.imgFull]}
                                     source={item.thumbnail}
                                  />
                                  <Image
-                                    style={[
-                                       {
-                                          resizeMode: 'cover',
-                                          height: '100%',
-                                          width: '100%',
-                                          borderTopLeftRadius: 20,
-                                          borderTopRightRadius: 20,
-                                          tintColor: 'gray',
-                                          opacity: 0.4,
-                                          position: 'absolute',
-                                       },
-                                    ]}
+                                    style={[styles.imgFull, styles.imgOverlay]}
                                     source={item.thumbnail}
                                  />
                                  {sortTrack.includes(item) ? (
-                                    <View
-                                       style={{
-                                          position: 'absolute',
-                                          width: '100%',
-                                          height: '100%',
-                                          justifyContent: 'center',
-                                       }}>
+                                    <View style={[styles.sortContainer]}>
                                        <View
-                                          style={{
-                                             height: 100,
-                                             width: 100,
-                                             backgroundColor: 'white',
-                                             borderRadius: 50,
-                                             alignSelf: 'center',
-                                             justifyContent: 'center',
-                                          }}>
-                                          <Text
-                                             style={{
-                                                position: 'absolute',
-                                                fontSize: 50,
-                                                color: '#2196F3',
-                                                alignSelf: 'center',
-                                             }}>
+                                          style={[styles.sortIndexContainer]}>
+                                          <Text style={[styles.sortIndexStyle]}>
                                              {sortTrack.indexOf(item) + 1}
                                           </Text>
                                        </View>
@@ -119,24 +82,12 @@ const EventGridView = (props) => {
                               </>
                            ) : (
                               <Image
-                                 style={{
-                                    resizeMode: 'cover',
-                                    height: '100%',
-                                    width: '100%',
-                                    borderTopLeftRadius: 20,
-                                    borderTopRightRadius: 20,
-                                 }}
+                                 style={[styles.imgFull]}
                                  source={item.thumbnail}
                               />
                            )}
                         </View>
-                        <View
-                           style={{
-                              width: '100%',
-                              height: '20%',
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                           }}>
+                        <View style={[styles.textContainer]}>
                            <Text style={{fontSize: 14}}>{item.event}</Text>
                         </View>
                      </View>
@@ -154,7 +105,6 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
    item: {
       alignItems: 'center',
-      // justifyContent: 'center',
       borderRadius: 0,
       height: windowWidth / 2,
       borderRadius: 20,
@@ -175,6 +125,45 @@ const styles = StyleSheet.create({
    },
    itemInvisible: {
       backgroundColor: 'transparent',
+   },
+   imgFull: {
+      height: '100%',
+      width: '100%',
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      resizeMode: 'cover',
+   },
+   imgOverlay: {
+      tintColor: 'gray',
+      opacity: 0.4,
+      position: 'absolute',
+   },
+   sortIndexContainer: {
+      height: 100,
+      width: 100,
+      backgroundColor: 'white',
+      borderRadius: 50,
+      alignSelf: 'center',
+      justifyContent: 'center',
+   },
+   sortIndexStyle: {
+      position: 'absolute',
+      fontSize: 50,
+      color: '#2196F3',
+      alignSelf: 'center',
+   },
+   sortContainer: {
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      justifyContent: 'center',
+   },
+   imgContainer: {height: '80%', width: '100%'},
+   textContainer: {
+      width: '100%',
+      height: '20%',
+      justifyContent: 'center',
+      alignItems: 'center',
    },
 });
 

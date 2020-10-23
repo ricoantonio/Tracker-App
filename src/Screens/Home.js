@@ -10,26 +10,16 @@ const Home = ({navigation: {navigate}}) => {
    const user = state.userReducer.user;
    const eventViewList = state.eventViewReducer.eventViewList;
    const eventList = state.events;
+   const tracked = state.trackReducer.track;
    return (
       <View>
-         <View
-            style={{
-               flexDirection: 'row',
-               alignItems: 'center',
-               height: 50,
-               marginHorizontal: 10,
-               marginVertical: 10,
-            }}>
-            <View style={{width: '50%'}}>
+         <View style={[styles.containerStyle]}>
+            <View style={[styles.containerLeft]}>
                <Text style={{fontSize: 18}}>Hi! {user}</Text>
             </View>
-            <View
-               style={{
-                  width: '50%',
-                  alignItems: 'flex-end',
-               }}>
+            <View style={styles.containerRight}>
                <Button
-                  containerStyle={{paddingRight: 10, right: -10}}
+                  containerStyle={[styles.buttonContainerStyle]}
                   title={eventViewList ? 'List ' : 'Grid'}
                   onPress={() => dispatch({type: 'TOGGLE_VIEW'})}
                />
@@ -54,6 +44,21 @@ const styles = StyleSheet.create({
       shadowRadius: 8,
       elevation: 5,
    },
+   containerStyle: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      height: 50,
+      marginHorizontal: 10,
+      marginVertical: 10,
+   },
+   containerLeft: {
+      width: '50%',
+   },
+   containerRight: {
+      width: '50%',
+      alignItems: 'flex-end',
+   },
+   buttonContainerStyle: {paddingRight: 10, right: -10},
 });
 
 export default Home;

@@ -10,6 +10,7 @@ import addSort from './actions/addSort';
 import newUser from './actions/newUser';
 import removeTrack from './actions/removeTrack';
 import removeSort from './actions/removeSort';
+import setTrack from './actions/setTrack';
 
 const Stores = createContext();
 
@@ -41,6 +42,7 @@ const Store = ({children}) => {
          ...addTrack(dispatch),
          ...removeTrack(dispatch),
          ...removeSort(dispatch),
+         ...setTrack(dispatch),
       }),
       [],
    );

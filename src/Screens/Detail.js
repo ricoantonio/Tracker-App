@@ -1,7 +1,8 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Stores} from '../Store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Detail = ({navigation: {navigate}, route}) => {
    const {state, dispatch, actions} = useContext(Stores);
@@ -38,7 +39,7 @@ const Detail = ({navigation: {navigate}, route}) => {
                right: 20,
                borderRadius: 50,
             }}>
-            {tracked.includes(item) ? (
+            {JSON.stringify(tracked).includes(item.event) ? (
                <TouchableOpacity onPress={() => actions.removeTrack(item)}>
                   <Text
                      style={[

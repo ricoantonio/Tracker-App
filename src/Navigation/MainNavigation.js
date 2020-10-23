@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import UserInputNav from './UserInputNav';
 import HomeNav from './HomeNav';
 import {Stores} from '../Store';

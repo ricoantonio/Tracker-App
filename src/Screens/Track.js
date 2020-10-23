@@ -4,40 +4,26 @@ import {Stores} from '../Store';
 import EventListView from '../Components/EventListView';
 import EventGridView from '../Components/EventGridView';
 import Button from '../Components/Button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Track = ({navigation: {navigate}}, props, route) => {
+const Track = ({navigation: {navigate}}) => {
    const {state, dispatch, actions} = useContext(Stores);
    const tracked = state.trackReducer.track;
    const sortToggle = state.trackReducer.sortToggle;
    const sort = state.trackReducer.sort;
    const eventViewList = state.eventViewReducer.eventViewList;
 
-   useEffect(() => {
-      dispatch({type: 'SORT_OFF'});
-   }, []);
-
    return (
       <View>
-         <View
-            style={{
-               flexDirection: 'row',
-               alignItems: 'center',
-               height: 50,
-               marginHorizontal: 10,
-               marginVertical: 10,
-            }}>
-            <View style={{width: '60%'}}>
-               <Text style={{fontSize: 18, color: 'red'}}>
+         <View style={[styles.container]}>
+            <View style={[styles.containerLeft]}>
+               <Text style={[styles.sortWarningText]}>
                   {tracked.length !== sort.length && sortToggle
                      ? 'Please complete your order'
                      : null}
                </Text>
             </View>
-            <View
-               style={{
-                  width: '40%',
-                  alignItems: 'flex-end',
-               }}>
+            <View style={[styles.containerRigth]}>
                {sortToggle ? (
                   <View style={{flexDirection: 'row'}}>
                      <Button
@@ -52,24 +38,13 @@ const Track = ({navigation: {navigate}}, props, route) => {
                               ? () => dispatch({type: 'SORT_TRACK'})
                               : null
                         }
-                        containerStyle={{
-                           paddingRight: 10,
-                           right: -20,
-                        }}
+                        containerStyle={[styles.buttonContainerLeft]}
                      />
                      <Button
                         title={'X'}
-                        buttonStyle={{
-                           height: 50,
-                           width: 50,
-                           color: 'white',
-                           backgroundColor: 'red',
-                        }}
+                        buttonStyle={[styles.buttonCancle]}
                         onPress={() => dispatch({type: 'SORT_TOGGLE'})}
-                        containerStyle={{
-                           paddingRight: 10,
-                           right: -10,
-                        }}
+                        containerStyle={[styles.buttonContainer]}
                      />
                   </View>
                ) : (
@@ -85,10 +60,7 @@ const Track = ({navigation: {navigate}}, props, route) => {
                            ? null
                            : () => dispatch({type: 'SORT_TOGGLE'})
                      }
-                     containerStyle={{
-                        paddingRight: 10,
-                        right: -10,
-                     }}
+                     containerStyle={[styles.buttonContainer]}
                   />
                )}
             </View>
@@ -100,12 +72,7 @@ const Track = ({navigation: {navigate}}, props, route) => {
          )}
          {tracked.length == 0 ? (
             <View>
-               <Text
-                  style={{
-                     fontSize: 20,
-                     color: 'gray',
-                     alignSelf: 'center',
-                  }}>
+               <Text style={[styles.noEventText]}>
                   You have not tracked any event
                </Text>
             </View>
@@ -114,14 +81,37 @@ const Track = ({navigation: {navigate}}, props, route) => {
    );
 };
 const styles = StyleSheet.create({
-   itemShadow: {
-      borderColor: '#ddd',
-      borderBottomWidth: 0,
-      shadowColor: '#000',
-      shadowOffset: {width: 0, height: 2},
-      shadowOpacity: 0.5,
-      shadowRadius: 8,
-      elevation: 4,
+   container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      height: 50,
+      marginHorizontal: 10,
+      marginVertical: 10,
+   },
+   containerLeft: {width: '60%'},
+   containerRigth: {
+      width: '40%',
+      alignItems: 'flex-end',
+   },
+   buttonContainer: {
+      paddingRight: 10,
+      right: -10,
+   },
+   buttonContainerLeft: {
+      paddingRight: 10,
+      right: -20,
+   },
+   noEventText: {
+      fontSize: 20,
+      color: 'gray',
+      alignSelf: 'center',
+   },
+   sortWarningText: {fontSize: 18, color: 'red'},
+   buttonCancle: {
+      height: 50,
+      width: 50,
+      color: 'white',
+      backgroundColor: 'red',
    },
 });
 
