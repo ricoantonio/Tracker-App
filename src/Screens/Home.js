@@ -18,7 +18,6 @@ const Home = ({navigation: {navigate}}) => {
             </View>
             <View style={styles.containerRight}>
                <Button
-                  containerStyle={[styles.buttonContainerStyle]}
                   title={eventViewList ? 'List ' : 'Grid'}
                   onPress={() => dispatch({type: 'TOGGLE_VIEW'})}
                />
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
       width: '50%',
       alignItems: 'flex-end',
    },
-   buttonContainerStyle: {paddingRight: 10, right: -10},
 });
 
 export default Home;

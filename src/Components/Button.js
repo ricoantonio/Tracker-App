@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
       height: 80,
       justifyContent: 'center',
       alignItems: 'center',
+      paddingRight: 10,
+      right: -10,
    },
    itemShadow: {
       borderColor: '#ddd',

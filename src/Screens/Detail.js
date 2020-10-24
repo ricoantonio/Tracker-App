@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
-import {View, Text, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {Stores} from '../Store';
+import Button from '../Components/Button';
 
 const Detail = ({route}) => {
    const {state, actions} = useContext(Stores);
@@ -10,74 +10,60 @@ const Detail = ({route}) => {
 
    return (
       <View>
-         <View style={{height: '60%', width: '100%'}}>
-            <Image
-               source={item.thumbnail}
-               style={{
-                  height: '100%',
-                  width: '100%',
-               }}
-            />
+         <View style={styles.imgContainer}>
+            <Image source={item.thumbnail} style={styles.imgStyle} />
          </View>
-         <View
-            style={{
-               alignContent: 'center',
-               alignItems: 'center',
-               height: '40%',
-               top: 20,
-            }}>
-            <Text style={{fontSize: 20}}>Event: {item.event}</Text>
-            <Text style={{fontSize: 20}}>Location: {item.location}</Text>
-            <Text style={{fontSize: 20}}>Entry Type: {item.type}</Text>
+         <View style={styles.detailContainer}>
+            <Text style={styles.textSize}>Event: {item.event}</Text>
+            <Text style={styles.textSize}>Location: {item.location}</Text>
+            <Text style={styles.textSize}>Entry Type: {item.type}</Text>
          </View>
-         <View
-            style={{
-               position: 'absolute',
-               bottom: 20,
-               alignSelf: 'center',
-               right: 20,
-               borderRadius: 50,
-            }}>
+         <View style={styles.buttonContainer}>
             {JSON.stringify(tracked).includes(item.event) ? (
-               <TouchableOpacity onPress={() => actions.removeTrack(item)}>
-                  <Text
-                     style={[
-                        {
-                           fontSize: 20,
-                           height: 50,
-                           width: 120,
-                           borderRadius: 50,
-                           textAlign: 'center',
-                           textAlignVertical: 'center',
-                           color: 'white',
-                           backgroundColor: 'red',
-                        },
-                     ]}>
-                     Remove
-                  </Text>
-               </TouchableOpacity>
+               <Button
+                  buttonStyle={styles.buttonRemove}
+                  title={'Remove'}
+                  onPress={() => actions.removeTrack(item)}
+               />
             ) : (
-               <TouchableOpacity onPress={() => actions.addTrack(item)}>
-                  <Text
-                     style={[
-                        {
-                           fontSize: 20,
-                           height: 50,
-                           width: 120,
-                           borderRadius: 50,
-                           textAlign: 'center',
-                           textAlignVertical: 'center',
-                           color: 'white',
-                           backgroundColor: '#2196F3',
-                        },
-                     ]}>
-                     Track
-                  </Text>
-               </TouchableOpacity>
+               <Button
+                  buttonStyle={styles.buttonTrack}
+                  title={'Track'}
+                  onPress={() => actions.addTrack(item)}
+               />
             )}
          </View>
       </View>
    );
 };
+
+const styles = StyleSheet.create({
+   imgContainer: {height: '60%', width: '100%'},
+   imgStyle: {height: '100%', width: '100%'},
+   textSize: {fontSize: 20},
+   detailContainer: {
+      alignContent: 'center',
+      alignItems: 'center',
+      height: '40%',
+      top: 20,
+   },
+   buttonContainer: {
+      position: 'absolute',
+      bottom: 10,
+      alignSelf: 'center',
+      right: 20,
+      borderRadius: 50,
+   },
+   buttonRemove: {
+      color: 'white',
+      backgroundColor: 'red',
+      width: 120,
+   },
+   buttonTrack: {
+      color: 'white',
+      backgroundColor: '#2196F3',
+      width: 120,
+   },
+});
 
 export default Detail;

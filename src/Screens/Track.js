@@ -43,7 +43,6 @@ const Track = ({navigation: {navigate}}) => {
                         title={'X'}
                         buttonStyle={[styles.buttonCancle]}
                         onPress={() => dispatch({type: 'SORT_TOGGLE'})}
-                        containerStyle={[styles.buttonContainer]}
                      />
                   </View>
                ) : (
@@ -92,12 +91,7 @@ const styles = StyleSheet.create({
       width: '40%',
       alignItems: 'flex-end',
    },
-   buttonContainer: {
-      paddingRight: 10,
-      right: -10,
-   },
    buttonContainerLeft: {
-      paddingRight: 10,
       right: -20,
    },
    noEventText: {
