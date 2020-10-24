@@ -12,6 +12,8 @@ export default (dispatch) => ({
             } catch (error) {
                console.log(error);
             }
+         } else {
+            await dispatch({type: 'NEW_USER', payload: name});
          }
       } catch (e) {
          console.log(e);
